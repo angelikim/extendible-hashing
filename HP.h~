@@ -1,0 +1,42 @@
+/*File HP.h*/
+
+
+typedef struct{  
+	int id;
+	char name[15];  
+	char surname[20]; 
+	char status[1];
+	char dateOfBirth[11]; 
+	int salary;
+	char section[1]; 
+	int daysOff;
+	int prevYears; 
+}Record;
+
+
+typedef struct{					/*eidiki pliroforia arxeiou.emperiexetai sto block 0*/
+	int type;						/*0 gia arxeio swrou, 1 gia arxeio katakermatismou*/
+	int totalRecords;				/*arithmos synolikwn eggrafwn pou exei to arxeio*/
+} Info;
+
+
+
+int HP_CreateFile( char *fileName) ;
+/*δημιουργία και κατάλληλη αρχικοποίηση ενός άδειου αρχείου σωρού  με  όνομα  fileName.Σε περίπτωση που εκτελεστεί επιτυχώς, επιστρέφεται 0, ενώ σε διαφορετική περίπτωση ‐1. */
+ 
+
+int HP_OpenFile( char *fileName ) ;
+/*ανοίγει το αρχείο με όνομα fileName και διαβάζει από το πρώτο μπλοκ την πληροφορία που  αφορά  το  αρχείο  σωρού.  Επιστρέφει  τον  αναγνωριστικό  αριθμό  ανοίγματος  αρχείου,  όπως  αυτός επιστράφηκε από το επίπεδο διαχείρισης μπλοκ ή ‐1 σε περίπτωση σφάλματος.*/
+
+
+int HP_CloseFile( int fileDesc ) ;
+/*κλείνει  το  αρχείο  που  προσδιορίζεται  από  τον  αναγνωριστικό  αριθμό  ανοίγματος fileDesc. Σε περίπτωση που εκτελεστεί επιτυχώς,επιστρέφεται 0, ενώ σε διαφορετική περίπτωση ‐1. */
+ 
+int HP_InsertEntry (  int fileDesc, Record record ) ; 
+/*εισαγωγή  μίας  εγγραφής  στο  αρχείο  σωρού.Η εγγραφή προστίθεται στο τέλος του αρχείου, μετά την τρέχουσα τελευταία εγγραφή. Σε περίπτωση που εκτελεστεί επιτυχώς, επιστρέφεται 0, ενώ σε διαφορετική περίπτωση ‐1. */
+
+
+void HP_GetAllEntries(  int fileDesc,  char* fieldName,  void *value ) ;
+/*εκτύπωση όλων των εγγραφών που υπάρχουν στο αρχείο σωρού οι οποίες  έχουν  τιμή  στο  πεδίο  με  όνομα  fieldName  ίση  με  value.Για κάθε εγγραφή που βρίσκεται μέσα στο αρχείο και έχει τιμή value στο πεδίο με όνομα fieldName, εκτυπώνονται τα  περιεχόμενά  της  *εκτυπώνεται  επίσης  το  πλήθος  των μπλοκ που διαβάστηκαν όπως και άλλα στατιστικά  στοιχεία. */
+
+

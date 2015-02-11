@@ -1,0 +1,22 @@
+.PHONY: clean all
+
+CC = gcc
+CFLAGS = -Wall -m32 -g3
+LFLAGS = -m32
+
+all:mainHP
+
+main: HP.o main0_HP.o BF.o
+	$(CC) $^ $(LFLAGS) -o $@  
+
+HP.o: HP.c
+	$(CC) $(CFLAGS) $^ -c
+
+main0_HT.o: main0_HP.c
+	$(CC) $(CFLAGS) $^ -c
+
+distclean:
+	$(RM) mainHP
+
+clean:
+	$(RM) HP.o main0_HP.o
